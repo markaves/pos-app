@@ -7,6 +7,7 @@ import {
   TouchableOpacity 
 } from 'react-native';
 
+
 import * as firebase from 'firebase';
 
 import {Actions} from 'react-native-router-flux';
@@ -22,63 +23,46 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export default class Logo extends Component<{}> {
+export default class Form extends Component<{}> {
   
   constructor(props) {
     super(props)
-    this.state = { email: '', password: '' }
+    this.state = ({
+      emailVar: '', 
+      passwordVar: '' 
+    })
   }
-  
-  signUpUser = (email,password) => {
-    try{
-     if (this.state.password.length < 6) {
-       alert("Please enter atleast 6 characters")
-       return;
-     } 
-     firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error) {
-    // Handle Errors here.
-    //var errorCode = error.code;
-    //var errorMessage = error.message;
-    
-    alert(error.message)
-    console.log(error)
-    // ...
-  });
-     
-    }
-    catch (error) {
-      console.log(error.toString())
-    }
-  }  
-  
-  loginUser = (email, password) => {
-    try{
-      if (this.state.email.length > 0) {
-        firebase.auth().signInWithEmailAndPassword(email,password).then(function (user) {
-       console.log(user)
-     })
-      }
-    }
-    catch (error) {
-      console.log(error.toString())
-    }
-  }
-  
+
   mainpage() {
       Actions.mainpage();
   }
   
-
+  
+  loginUser = () => {
+   
+    if (this.state.emailVar.length > 0) {
+        firebase.auth().signInWithEmailAndPassword(this.state.emailVar,this.state.passwordVar).then(function (user) {
+       console.log(user);
+       Actions.mainpage();
+     }).catch(function(error){
+       var errorCode = error.code;
+       var errorMessage = error.message;
+       console.log(errorMessage);
+     })
+      }
+    
+  }
 
 	render(){
 		return(
 			<View style={styles.container}>
           <TextInput style={styles.inputBox} 
-              underlineColorAndroid='rgba(0,0,0,0)' 
+              underlineColorAndroid='rgba(0,0,0,0)'
               placeholder="Email"
               placeholderTextColor = "#ffffff"
               selectionColor="#fff"
-              onChangeText={(email) => this.setState({email})}
+              onChangeText={(emailVar) => this.setState({emailVar})}
+              value={this.state.emailVar}
               keyboardType="email-address"
               //onSubmitEditing={()=> this.password.focus()}
               />
@@ -88,10 +72,11 @@ export default class Logo extends Component<{}> {
               placeholder="Password"
               secureTextEntry={true}
               placeholderTextColor = "#ffffff"
-              onChangeText={(password) => this.setState({passwowrd})}
+              onChangeText={(passwordVar) => this.setState({passwordVar})}
+              value={this.state.passwordVar}
               //ref={(input) => this.password = input}
               />  
-           <TouchableOpacity style={styles.button} onPress={this.loginUser(this.state.email, this.state.password)}>
+           <TouchableOpacity style={styles.button} onPress={this.loginUser}>
              <Text style={styles.buttonText}>{this.props.type}</Text>
              
            </TouchableOpacity>   
