@@ -42,7 +42,7 @@ export default class Form extends Component<{}> {
    
     if (this.state.emailVar.length > 0) {
         firebase.auth().signInWithEmailAndPassword(this.state.emailVar,this.state.passwordVar).then(function (user) {
-       console.log(user);
+       console.log(user.uid);
        Actions.mainpage();
      }).catch(function(error){
        var errorCode = error.code;
@@ -78,9 +78,8 @@ export default class Form extends Component<{}> {
               />  
            <TouchableOpacity style={styles.button} onPress={this.loginUser}>
              <Text style={styles.buttonText}>{this.props.type}</Text>
-             
            </TouchableOpacity>   
-           <TouchableOpacity onPress={this.mainpage}><Text style={styles.signupButton}> Signup</Text></TouchableOpacity>
+           
   		</View>
 			)
 	}

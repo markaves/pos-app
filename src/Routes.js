@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Stack, Scene} from 'react-native-router-flux';
+import {Router, Stack, Scene, ActionConst } from 'react-native-router-flux';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -10,9 +10,9 @@ export default class Routes extends Component<{}> {
 		return(
 			<Router>
 			    <Stack key="root" hideNavBar={true}>
-			      <Scene key="login" component={Login} title="Login" initial={true}/>
+			      <Scene key="login" component={Login} title="Login" initial={true} type={ActionConst.RESET} />
 			      <Scene key="signup" component={Signup} title="Register"/>
-			      <Scene key="mainpage" component={MainPage} title="MainPage"/>
+			      <Scene key="mainpage" component={MainPage} title="MainPage" type={ActionConst.RESET}/>
 			    </Stack>
 			 </Router>
 			)
