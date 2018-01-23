@@ -6,6 +6,7 @@
     "firebase": "^4.9.0",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
-    "react-native-router-flux": "^4.0.0-beta.28"
+    "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-simple-fetch": "^0.1.3"
   }
 }

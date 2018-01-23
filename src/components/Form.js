@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
 
 import {Actions} from 'react-native-router-flux';
 
+
 // Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDuHfXwrq5g3QrSXk1u6GKGbG212SliCd0",
@@ -23,19 +24,26 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export default class Form extends Component<{}> {
+class Form extends Component {
   
   constructor(props) {
     super(props)
     this.state = ({
       emailVar: '', 
-      passwordVar: '' 
+      passwordVar: '',
+      uid: ''
     })
+  
+ 
   }
+  
+  
 
   mainpage() {
       Actions.mainpage();
   }
+  
+
   
   
   loginUser = () => {
@@ -43,7 +51,12 @@ export default class Form extends Component<{}> {
     if (this.state.emailVar.length > 0) {
         firebase.auth().signInWithEmailAndPassword(this.state.emailVar,this.state.passwordVar).then(function (user) {
        console.log(user.uid);
-       Actions.mainpage();
+       
+       // Call user table
+      
+      
+       //Actions.mainpage();
+       Actions.farmer({uid: user.uid});
      }).catch(function(error){
        var errorCode = error.code;
        var errorMessage = error.message;
@@ -116,3 +129,5 @@ const styles = StyleSheet.create({
   }
   
 });
+
+export default Form;
