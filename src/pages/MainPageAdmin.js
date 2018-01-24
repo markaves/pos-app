@@ -77,7 +77,7 @@ export default class MainPage extends Component<{}> {
         <MapView.Marker
           coordinate={{ latitude: 14.55116, longitude: 121.04475 }}
           title="POS1"
-          description="Sale P15,498"
+          description="This is the admin"
           />
         <MapView.Marker
           coordinate={{ latitude: 14.55284, longitude: 121.04993 }}
@@ -97,7 +97,7 @@ export default class MainPage extends Component<{}> {
 const styles = StyleSheet.create({
   container : {
     //backgroundColor:'#455a64',
-    flex: 1,
+    height: 300,
     paddingVertical: 50,
     //alignItems:'center',
     //justifyContent :'center'

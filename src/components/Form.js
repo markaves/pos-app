@@ -36,15 +36,11 @@ class Form extends Component {
   
  
   }
-  
-  
 
   mainpage() {
       Actions.mainpage();
   }
-  
 
-  
   
   loginUser = () => {
    

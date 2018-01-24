@@ -15,6 +15,7 @@ export default class Routes extends Component<{}> {
 			      <Scene key="login" component={Login} title="Login" initial={true} type={ActionConst.RESET} />
 			      <Scene key="signup" component={Signup} title="Register"/>
 			      <Scene key="mainpage" component={MainPage} title="MainPage" type={ActionConst.RESET}/>
+			      <Scene key="mainpageadmin" component={MainPageAdmin} title="MainPage Admin" type={ActionConst.RESET}/>
 			      <Scene key="farmer" component={Farmer} title="Farmer" type={ActionConst.RESET}/>
 			    </Stack>
 			 </Router>

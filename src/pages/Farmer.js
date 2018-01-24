@@ -14,6 +14,17 @@ import {fetch} from 'react-native-simple-fetch';
 
 export default class Farmer extends Component {
   
+    constructor(props) {
+    super(props)
+    this.state = ({
+      role: '', 
+      uid: ''
+    })
+  
+ 
+  }
+  
+  
   
   componentWillMount = async () => {
     try {
@@ -29,13 +40,19 @@ export default class Farmer extends Component {
           }),
         })
       const posts = await response.json()
+      const role = posts.Item.role
 
-       console.log(posts);
+      console.log(posts.Item.role);
+        if (posts.Item.role == 'user') {
+          Actions.mainpage({uid: this.props.uid, role: this.role});
+        } else {
+          Actions.mainpageadmin({uid: this.props.uid, role: this.role});
+      } 
     } catch (e) {
       console.log(e);
     }
     console.log(this.props.uid);
-    Actions.mainpage();
+    
   }
   
 	render() {
